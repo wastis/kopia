@@ -57,10 +57,6 @@ func Connect(ctx context.Context, configFile string, st blob.Storage, password s
 		return errors.Wrap(err, "unable to set up caching")
 	}
 
-	if err := blob.EncryptSensitiveFields(lc.Storage.Config, password, lc.Storage.Type); err != nil {
-		return errors.Wrap(err, "error encrypting sensitive fields")
-	}
-
 	if err := lc.writeToFile(configFile); err != nil {
 		return errors.Wrap(err, "unable to write config file")
 	}
